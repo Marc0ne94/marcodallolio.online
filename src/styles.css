@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #141210;
+  --color-surface: #1c1a17;
+  --color-fg: #f3efe6;
+  --color-muted: #a39c90;
+  --color-subtle: #7a746a;
+  --color-accent: #d4cdc2;
+  --color-accent-fg: #141210;
+  --color-border: rgb(243 239 230 / 0.12);
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --radius-md: 12px;
+  --radius-xl: 24px;
+  --shadow-border:
+    0 0 0 1px rgb(243 239 230 / 0.08), 0 18px 40px -24px rgb(0 0 0 / 0.55);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

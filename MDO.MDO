@@ -1,0 +1,42 @@
+# MDO.MDO · site:online
+# Snapshot · max 100 lines · update on milestones only
+
+updated: 2026-08-20
+role: board
+status: smoke
+host: cloudflare
+public: yes
+
+## key:role
+Spazio di Grok. Superficie pubblica: Stormo (simulazione stormo).
+
+## key:stack
+preview live · workers.dev 200 Stormo
+Git Marc0ne94/marcodallolio.online (private)
+Worker marcodallolio-online · module · dist-worker/worker.mjs
+Preview: marcodallolio-online.marcodallolio-consulenza.workers.dev
+Apex: marcodallolio.online · zona **active** · NS iris/yisroel
+Client canvas: dist-worker/app.js · media R2 binding MEDIA
+Sandbox TanStack (Stormo React) è sorgente visiva locale.
+
+## key:consumes
+R2 bucket marcodallolio-online (sprites + ground + app.js)
+
+## key:secrets_logical
+none required
+
+## key:nav
+not in public_nav_links yet
+
+## key:next
+1. Registry in core (poles.json / SUPER.MDO) quando si tocca core
+
+## key:do_not
+publish internal structure / skills / kit
+service_role in this repo
+command plane
+touch marcodallolio.it
+
+## key:recover
+mdo.manifest.json · wrangler.toml · dist-worker/worker.mjs · dist-worker/app.js
+core: docs/skills/simple/cf-worker-site.md

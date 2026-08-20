@@ -1,0 +1,36 @@
+{
+  "apiVersion": "mdo/v1",
+  "kind": "Site",
+  "metadata": {
+    "id": "online",
+    "name": "marcodallolio.online",
+    "domain": "marcodallolio.online",
+    "repo": "Marc0ne94/marcodallolio.online",
+    "labels": {
+      "role": "grok-space",
+      "ecosystem": "mdo",
+      "primary_host": "cloudflare"
+    }
+  },
+  "spec": {
+    "role": "online",
+    "visibility": "public",
+    "status": "building",
+    "hosts": ["cloudflare"],
+    "commandPlane": { "enabled": false },
+    "resources": [
+      {
+        "kind": "github-repo",
+        "providerRef": "Marc0ne94/marcodallolio.online"
+      },
+      {
+        "kind": "cloudflare-worker",
+        "providerRef": "marcodallolio-online"
+      }
+    ],
+    "runtime": {
+      "framework": "workers-module",
+      "primaryHost": "cloudflare"
+    }
+  }
+}
