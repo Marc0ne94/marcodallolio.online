@@ -134,35 +134,18 @@ export function screenSurface() {
   g.fillRect(28, 18, W - 56, 44);
   g.fillStyle = "#8a847c";
   g.font = "22px system-ui, sans-serif";
-  g.fillText("Documento  ·  Senza nome", 48, 48);
-  g.fillStyle = "#c45c48";
-  g.beginPath();
-  g.arc(W - 56, 40, 6, 0, Math.PI * 2);
-  g.fill();
+  g.fillText("Document", 48, 48);
 
   g.fillStyle = "#1c1916";
   g.font = "600 36px Georgia, serif";
-  g.fillText("Note di sessione", 88, 140);
+  g.fillText("Untitled", 88, 140);
   g.fillStyle = "#4a453e";
   g.font = "22px Georgia, serif";
-  const lines = [
-    "Sit-to-stand, postazione frontale. Il titolo sparisce.",
-    "Schermo primario Samsung a destra, ultrawide ASUS a sinistra.",
-    "Dietro la Trust, fino al monitor: NVIDIA DGX Spark.",
-    "Zenbook Duo a destra, tastiera sganciata sul piano.",
-    "",
-    "Censimento fermo. Si modellano i pezzi uno alla volta.",
-  ];
-  lines.forEach((line, i) => g.fillText(line, 88, 190 + i * 36));
-
-  g.strokeStyle = "#d4cdc2";
-  g.lineWidth = 1;
-  g.strokeRect(88, 430, 520, 280);
-  g.fillStyle = "#6e675e";
-  g.font = "16px system-ui, sans-serif";
-  g.fillText("fig. 01  —  banco, vista operatore", 100, 456);
+  for (let i = 0; i < 8; i++) {
+    g.fillRect(88, 190 + i * 36, 720 - (i % 4) * 80, 12);
+  }
   g.fillStyle = "#c8c0b4";
-  g.fillRect(110, 480, 476, 200);
+  g.fillRect(110, 500, 476, 200);
 
   winTaskbar(g, W, H, "#1f1f22");
   return tex(c);
@@ -195,21 +178,16 @@ export function screenDuoTop() {
   g.fillRect(0, 0, W, 36);
   g.fillStyle = "#c8d0d6";
   g.font = "16px system-ui, sans-serif";
-  g.fillText("ASUS  ·  ScreenPad Plus", 18, 24);
+  g.fillText("Display 2", 18, 24);
 
-  windowFrame(g, 70, 64, 1180, 820, "#f3eee6", "bozza — dual.md");
+  windowFrame(g, 70, 64, 1180, 820, "#f3eee6", "notes");
   g.fillStyle = "#1a1612";
   g.font = "28px Georgia, serif";
-  g.fillText("Due pannelli, una macchina.", 110, 160);
+  g.fillText("Untitled", 110, 160);
   g.fillStyle = "#5a534c";
-  g.font = "20px Georgia, serif";
-  [
-    "Lid OLED 14\" 16:10 in alto.",
-    "ScreenPad in basso, inclinato verso l’operatore.",
-    "Tastiera Bluetooth sganciata, sul tappetino.",
-  ].forEach((t, i) => g.fillText(t, 110, 210 + i * 34));
+  for (let i = 0; i < 6; i++) g.fillRect(110, 210 + i * 34, 640 - (i % 3) * 80, 12);
   g.fillStyle = "#ddd6cc";
-  g.fillRect(110, 340, 720, 420);
+  g.fillRect(110, 430, 720, 320);
 
   winTaskbar(g, W, H, "#1a1d22");
   return tex(c);
@@ -222,26 +200,18 @@ export function screenDuoBot() {
   g.fillStyle = "#1b1e24";
   g.fillRect(0, 0, W, H);
 
-  windowFrame(g, 90, 50, 1420, 860, "#ece8e0", "terminale — banco");
+  windowFrame(g, 90, 50, 1420, 860, "#ece8e0", "editor");
   g.fillStyle = "#1a1b1e";
   g.fillRect(90, 86, 280, 824);
   g.fillStyle = "#8b93a3";
   g.font = "18px ui-monospace, monospace";
-  ["src/", "  studio/", "  hardware.tsx", "  laptops", "public/", "  photos/"].forEach((t, i) => {
+  ["src/", "  app/", "  scene", "  mesh", "lib/", "  gltf"].forEach((t, i) => {
     g.fillStyle = i === 2 ? "#d8dde6" : "#7a828e";
     g.fillText(t, 112, 130 + i * 32);
   });
   g.fillStyle = "#2a2622";
   g.font = "18px ui-monospace, monospace";
-  const code = [
-    "isolate(id) {",
-    "  setSolo(id)",
-    "  setSelected(id)",
-    "}",
-    "",
-    "// Surface Pro 7  ·  3:2",
-    "// Zenbook Duo    ·  16:10 × 2",
-  ];
+  const code = ["group()", "  mesh()", "  light()", "", "orbit", "frame"];
   code.forEach((t, i) => g.fillText(t, 410, 140 + i * 28));
 
   winTaskbar(g, W, H, "#12141a");
@@ -260,10 +230,9 @@ export function matPrint() {
     g.lineTo(x, 984);
     g.stroke();
   }
-  g.fillStyle = "#3a3530";
-  g.font = "28px monospace";
-  const labels = ["Process Operations", "Text Processing", "grep", "path", "find", "STAGE"];
-  labels.forEach((l, i) => g.fillText(l, 100 + (i % 3) * 620, 80 + Math.floor(i / 3) * 420));
+  g.fillStyle = "#2a2622";
+  g.font = "22px monospace";
+  for (let i = 0; i < 6; i++) g.fillText("·", 100 + (i % 3) * 620, 80 + Math.floor(i / 3) * 420);
   return tex(c);
 }
 

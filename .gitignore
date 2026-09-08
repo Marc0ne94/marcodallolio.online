@@ -16,3 +16,6 @@ dist
 .node_modules.lock
 public/__grok
 
+reference/
+attachments
+public/photos

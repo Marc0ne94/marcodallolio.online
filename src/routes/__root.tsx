@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       { title: APP_NAME },
       {
         name: "description",
-        content: "Studio 3D della scrivania. Void nero, sit-stand, hardware navigabile.",
+        content: "Sit-to-stand. Void nero. Navigazione 3D.",
       },
       { name: "theme-color", content: "#0c0b0a" },
     ],

@@ -10,159 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ArchivioRouteImport } from './routes/archivio'
-import { Route as FotoRouteImport } from './routes/foto'
-import { Route as InventarioRouteImport } from './routes/inventario'
-import { Route as MappaRouteImport } from './routes/mappa'
-import { Route as PezziRouteImport } from './routes/pezzi'
-import { Route as StormoRouteImport } from './routes/stormo'
-import { Route as FotoIndexRouteImport } from './routes/foto.index'
-import { Route as FotoIdRouteImport } from './routes/foto.$id'
-import { Route as InventarioIndexRouteImport } from './routes/inventario.index'
-import { Route as InventarioIdRouteImport } from './routes/inventario.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArchivioRoute = ArchivioRouteImport.update({
-  id: '/archivio',
-  path: '/archivio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FotoRoute = FotoRouteImport.update({
-  id: '/foto',
-  path: '/foto',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InventarioRoute = InventarioRouteImport.update({
-  id: '/inventario',
-  path: '/inventario',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MappaRoute = MappaRouteImport.update({
-  id: '/mappa',
-  path: '/mappa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PezziRoute = PezziRouteImport.update({
-  id: '/pezzi',
-  path: '/pezzi',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StormoRoute = StormoRouteImport.update({
-  id: '/stormo',
-  path: '/stormo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FotoIndexRoute = FotoIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => FotoRoute,
-} as any)
-const FotoIdRoute = FotoIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => FotoRoute,
-} as any)
-const InventarioIndexRoute = InventarioIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => InventarioRoute,
-} as any)
-const InventarioIdRoute = InventarioIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => InventarioRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/archivio': typeof ArchivioRoute
-  '/foto': typeof FotoRouteWithChildren
-  '/inventario': typeof InventarioRouteWithChildren
-  '/mappa': typeof MappaRoute
-  '/pezzi': typeof PezziRoute
-  '/stormo': typeof StormoRoute
-  '/foto/$id': typeof FotoIdRoute
-  '/inventario/$id': typeof InventarioIdRoute
-  '/foto/': typeof FotoIndexRoute
-  '/inventario/': typeof InventarioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/archivio': typeof ArchivioRoute
-  '/mappa': typeof MappaRoute
-  '/pezzi': typeof PezziRoute
-  '/stormo': typeof StormoRoute
-  '/foto/$id': typeof FotoIdRoute
-  '/inventario/$id': typeof InventarioIdRoute
-  '/foto': typeof FotoIndexRoute
-  '/inventario': typeof InventarioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/archivio': typeof ArchivioRoute
-  '/foto': typeof FotoRouteWithChildren
-  '/inventario': typeof InventarioRouteWithChildren
-  '/mappa': typeof MappaRoute
-  '/pezzi': typeof PezziRoute
-  '/stormo': typeof StormoRoute
-  '/foto/$id': typeof FotoIdRoute
-  '/inventario/$id': typeof InventarioIdRoute
-  '/foto/': typeof FotoIndexRoute
-  '/inventario/': typeof InventarioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/archivio'
-    | '/foto'
-    | '/inventario'
-    | '/mappa'
-    | '/pezzi'
-    | '/stormo'
-    | '/foto/$id'
-    | '/inventario/$id'
-    | '/foto/'
-    | '/inventario/'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/archivio'
-    | '/mappa'
-    | '/pezzi'
-    | '/stormo'
-    | '/foto/$id'
-    | '/inventario/$id'
-    | '/foto'
-    | '/inventario'
-  id:
-    | '__root__'
-    | '/'
-    | '/archivio'
-    | '/foto'
-    | '/inventario'
-    | '/mappa'
-    | '/pezzi'
-    | '/stormo'
-    | '/foto/$id'
-    | '/inventario/$id'
-    | '/foto/'
-    | '/inventario/'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArchivioRoute: typeof ArchivioRoute
-  FotoRoute: typeof FotoRouteWithChildren
-  InventarioRoute: typeof InventarioRouteWithChildren
-  MappaRoute: typeof MappaRoute
-  PezziRoute: typeof PezziRoute
-  StormoRoute: typeof StormoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -174,113 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/archivio': {
-      id: '/archivio'
-      path: '/archivio'
-      fullPath: '/archivio'
-      preLoaderRoute: typeof ArchivioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/foto': {
-      id: '/foto'
-      path: '/foto'
-      fullPath: '/foto'
-      preLoaderRoute: typeof FotoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/inventario': {
-      id: '/inventario'
-      path: '/inventario'
-      fullPath: '/inventario'
-      preLoaderRoute: typeof InventarioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mappa': {
-      id: '/mappa'
-      path: '/mappa'
-      fullPath: '/mappa'
-      preLoaderRoute: typeof MappaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pezzi': {
-      id: '/pezzi'
-      path: '/pezzi'
-      fullPath: '/pezzi'
-      preLoaderRoute: typeof PezziRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/stormo': {
-      id: '/stormo'
-      path: '/stormo'
-      fullPath: '/stormo'
-      preLoaderRoute: typeof StormoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/foto/': {
-      id: '/foto/'
-      path: '/'
-      fullPath: '/foto/'
-      preLoaderRoute: typeof FotoIndexRouteImport
-      parentRoute: typeof FotoRoute
-    }
-    '/foto/$id': {
-      id: '/foto/$id'
-      path: '/$id'
-      fullPath: '/foto/$id'
-      preLoaderRoute: typeof FotoIdRouteImport
-      parentRoute: typeof FotoRoute
-    }
-    '/inventario/': {
-      id: '/inventario/'
-      path: '/'
-      fullPath: '/inventario/'
-      preLoaderRoute: typeof InventarioIndexRouteImport
-      parentRoute: typeof InventarioRoute
-    }
-    '/inventario/$id': {
-      id: '/inventario/$id'
-      path: '/$id'
-      fullPath: '/inventario/$id'
-      preLoaderRoute: typeof InventarioIdRouteImport
-      parentRoute: typeof InventarioRoute
-    }
   }
 }
 
-interface FotoRouteChildren {
-  FotoIdRoute: typeof FotoIdRoute
-  FotoIndexRoute: typeof FotoIndexRoute
-}
-
-const FotoRouteChildren: FotoRouteChildren = {
-  FotoIdRoute: FotoIdRoute,
-  FotoIndexRoute: FotoIndexRoute,
-}
-
-const FotoRouteWithChildren = FotoRoute._addFileChildren(FotoRouteChildren)
-
-interface InventarioRouteChildren {
-  InventarioIdRoute: typeof InventarioIdRoute
-  InventarioIndexRoute: typeof InventarioIndexRoute
-}
-
-const InventarioRouteChildren: InventarioRouteChildren = {
-  InventarioIdRoute: InventarioIdRoute,
-  InventarioIndexRoute: InventarioIndexRoute,
-}
-
-const InventarioRouteWithChildren = InventarioRoute._addFileChildren(
-  InventarioRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArchivioRoute: ArchivioRoute,
-  FotoRoute: FotoRouteWithChildren,
-  InventarioRoute: InventarioRouteWithChildren,
-  MappaRoute: MappaRoute,
-  PezziRoute: PezziRoute,
-  StormoRoute: StormoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

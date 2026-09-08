@@ -47,7 +47,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "hero",
     title: "Monitor sinistro",
     model: "ASUS ROG Strix XG349C",
-    why: "Ultrawide 34\" 3440×1440, curva 1900R, seriale S4LMRS008414.",
+    why: "Ultrawide 34\" 3440×1440, curva 1900R.",
   },
   {
     n: 3,
@@ -55,7 +55,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "hero",
     title: "Monitor destro",
     model: "Samsung U32R590",
-    why: "32\" 4K primario, curva 1500R, seriale H1AK500000.",
+    why: "32\" 4K, curva 1500R.",
   },
   {
     n: 4,
@@ -63,7 +63,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "hero",
     title: "Surface",
     model: "Microsoft Surface Pro 7",
-    why: "Type cover IT, kickstand. Lastra 09.",
+    why: "Type cover, kickstand.",
   },
   {
     n: 5,
@@ -71,7 +71,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "hero",
     title: "Zenbook Duo",
     model: "ASUS Zenbook Duo",
-    why: "Due pannelli, tastiera sganciata. Lastra 07.",
+    why: "Due pannelli, tastiera sganciata.",
   },
   {
     n: 6,
@@ -95,7 +95,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "hero",
     title: "Spark",
     model: "NVIDIA DGX Spark",
-    why: "Cubo sotto la Trust. Logo MSI sul telaio, identità Spark.",
+    why: "SFF sotto la tastiera.",
   },
   {
     n: 9,
@@ -183,7 +183,7 @@ export const BUILD_LIST: BuildItem[] = [
     wave: "dressing",
     title: "Custodia",
     model: "Ray-Ban",
-    why: "Astuccio marrone, lastra 08.",
+    why: "Astuccio.",
   },
   {
     n: 20,

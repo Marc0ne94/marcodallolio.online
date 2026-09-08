@@ -1,18 +1,11 @@
-import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { assetById } from "@/data/catalog";
 import { BUILD_LIST, WAVES, buildItemById } from "@/data/build-list";
-import { isModelConfirmed, resolvedModel, useLedger } from "@/lib/store";
 import { cn } from "@/lib/cn";
 import { useStudio } from "./studio-state";
 
 export function StudioHud() {
   const { selected, setSelected, posture, setPosture, solo, isolate, showDesk } = useStudio();
   const [listOpen, setListOpen] = useState(true);
-  const assignments = useLedger((s) => s.assignments);
-  const asset = selected ? assetById(selected) : undefined;
-  const model = asset ? resolvedModel(asset, assignments[asset.id]) : null;
-  const confirmed = asset ? isModelConfirmed(asset, assignments[asset.id]) : false;
   const item = selected ? buildItemById(selected) : undefined;
 
   return (
@@ -57,19 +50,13 @@ export function StudioHud() {
             Lista
           </button>
         </div>
-        <nav className="pointer-events-auto flex gap-1">
-          <Ghost to="/pezzi">Pezzi</Ghost>
-          <Ghost to="/foto">Lastre</Ghost>
-          <Ghost to="/inventario">Inventario</Ghost>
-        </nav>
       </div>
 
       <div className="flex min-h-0 flex-1 items-stretch gap-3 pt-3">
         {listOpen ? (
           <aside className="pointer-events-auto hidden w-64 shrink-0 flex-col overflow-hidden rounded-[18px] bg-surface/90 shadow-[var(--shadow-border)] backdrop-blur-md md:flex">
             <div className="border-b border-line px-4 py-3">
-              <p className="font-mono text-[11px] tracking-[0.16em] text-subtle">Produzione · 20</p>
-              <p className="mt-1 text-sm text-muted">Un pezzo alla volta, nel void.</p>
+              <p className="font-mono text-[11px] tracking-[0.16em] text-subtle">Pezzi</p>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto py-2">
               {WAVES.map((wave) => (
@@ -129,30 +116,22 @@ export function StudioHud() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
-              {solo ? "Isolato nel void · Banco per tornare" : "Trascina · clicca · Isola dalla lista"}
+              {solo ? "Isolato · Banco per tornare" : "Trascina · clicca un pezzo"}
             </p>
-            {asset ? (
+            {item ? (
               <div className="pointer-events-auto max-w-md rounded-[18px] bg-surface/95 p-4 shadow-[var(--shadow-border)] backdrop-blur-md sm:p-5">
                 <p className="font-mono text-[11px] tracking-[0.16em] text-subtle">
-                  {item ? `${String(item.n).padStart(2, "0")} · ${asset.code}` : asset.code}
+                  {String(item.n).padStart(2, "0")}
                 </p>
-                <h2 className="mt-1 font-display text-2xl tracking-tight">{asset.name}</h2>
-                <p className="mt-1 text-sm text-muted">{model ?? asset.genericName}</p>
-                {item ? <p className="mt-2 text-sm text-subtle">{item.why}</p> : null}
-                {confirmed ? (
-                  <p className="mt-2 font-mono text-[11px] tracking-[0.14em] text-ok">
-                    Modello confermato
-                  </p>
-                ) : (
-                  <p className="mt-2 font-mono text-[11px] tracking-[0.14em] text-pending">
-                    SKU in attesa
-                  </p>
-                )}
+                <h2 className="mt-1 font-display text-2xl tracking-tight">{item.title}</h2>
+                {item.model !== "—" ? (
+                  <p className="mt-1 text-sm text-muted">{item.model}</p>
+                ) : null}
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {solo !== asset.id ? (
+                  {solo !== item.id ? (
                     <button
                       type="button"
-                      onClick={() => isolate(asset.id)}
+                      onClick={() => isolate(item.id)}
                       className="rounded-full bg-fg px-3 py-1.5 text-sm text-accent-fg"
                     >
                       Isola
@@ -163,16 +142,9 @@ export function StudioHud() {
                       onClick={showDesk}
                       className="rounded-full bg-fg px-3 py-1.5 text-sm text-accent-fg"
                     >
-                      Sul banco
+                      Banco
                     </button>
                   )}
-                  <Link
-                    to="/inventario/$id"
-                    params={{ id: asset.id }}
-                    className="rounded-full bg-raised px-3 py-1.5 text-sm text-muted hover:text-fg"
-                  >
-                    Scheda
-                  </Link>
                   <button
                     type="button"
                     onClick={() => setSelected(null)}
@@ -187,16 +159,5 @@ export function StudioHud() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Ghost({ to, children }: { to: string; children: string }) {
-  return (
-    <Link
-      to={to}
-      className="rounded-full bg-raised/70 px-3 py-1.5 font-mono text-[11px] tracking-[0.14em] text-muted backdrop-blur-md hover:text-fg"
-    >
-      {children}
-    </Link>
   );
 }
