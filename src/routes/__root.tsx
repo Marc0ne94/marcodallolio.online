@@ -1,11 +1,10 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { AppShell } from "@/components/app-shell";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Stormo";
-const host = import.meta.env.VITE_PUBLIC_HOSTNAME;
-const ogImage = host ? `https://${host}/og.jpg` : undefined;
+const APP_NAME = "Banco";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,41 +14,41 @@ export const Route = createRootRoute({
       { title: APP_NAME },
       {
         name: "description",
-        content:
-          "Simulazione floccante di ragazzi: separazione, allineamento, coesione e fuga dal cursore.",
+        content: "Studio 3D della scrivania. Void nero, sit-stand, hardware navigabile.",
       },
-      { name: "apple-mobile-web-app-title", content: APP_NAME },
-      { name: "theme-color", content: "#141210" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:type", content: "x:game" },
-      { property: "og:title", content: APP_NAME },
-      ...(ogImage
-        ? [
-            { property: "og:image", content: ogImage },
-            { property: "og:image:width", content: "1200" },
-            { property: "og:image:height", content: "630" },
-          ]
-        : []),
+      { name: "theme-color", content: "#0c0b0a" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
       { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
     ],
   }),
-  component: () => (
-    <html lang="it" suppressHydrationWarning className="antialiased">
+  component: RootDocument,
+});
+
+function RootDocument() {
+  return (
+    <html lang="it" className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="bg-bg text-fg">
         <PreviewHostBridge />
         <AuthProvider>
-          <Outlet />
+          <AppShell>
+            <Outlet />
+          </AppShell>
         </AuthProvider>
         <Scripts />
       </body>
     </html>
-  ),
-});
+  );
+}

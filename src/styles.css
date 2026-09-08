@@ -1,25 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #141210;
-  --color-surface: #1c1a17;
-  --color-fg: #f3efe6;
-  --color-muted: #a39c90;
-  --color-subtle: #7a746a;
-  --color-accent: #d4cdc2;
-  --color-accent-fg: #141210;
-  --color-border: rgb(243 239 230 / 0.12);
-  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --color-bg: #0c0b0a;
+  --color-surface: #161412;
+  --color-raised: #1e1b18;
+  --color-fg: #f3eee6;
+  --color-muted: #9c9488;
+  --color-subtle: #6e675e;
+  --color-line: #2a2622;
+  --color-accent: #d4c4a8;
+  --color-accent-fg: #1a1612;
+  --color-terra: #8f4e38;
+  --color-pending: #c4a574;
+  --color-ok: #7d9a78;
+  --color-paper: #ebe4d8;
+
+  --font-sans: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-xl: 24px;
-  --shadow-border:
-    0 0 0 1px rgb(243 239 230 / 0.08), 0 18px 40px -24px rgb(0 0 0 / 0.55);
-  --motion-quick: 150ms;
-  --motion-fast: 250ms;
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --shadow-border: 0 0 0 1px rgb(243 238 230 / 0.08);
+  --shadow-border-hover: 0 0 0 1px rgb(243 238 230 / 0.14);
 }
 
 @layer base {
@@ -36,9 +43,30 @@
     color: var(--color-fg);
   }
 
+  body {
+    font-family: var(--font-sans);
+    letter-spacing: 0.01em;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+
+  img.plate {
+    outline: 1px solid rgb(243 238 230 / 0.12);
+    outline-offset: -1px;
   }
 }
 
@@ -50,4 +78,31 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-in-2 {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+.rise-in-3 {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+}
+.rise-in-4 {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
 }

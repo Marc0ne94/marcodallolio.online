@@ -1,8 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FlockApp } from "@/components/flock-app";
+import { StudioPage } from "@/components/studio/studio-page";
 
-export const Route = createFileRoute("/")({ component: Home });
+type Search = { solo?: string };
 
-function Home() {
-  return <FlockApp />;
+export const Route = createFileRoute("/")({
+  ssr: false,
+  validateSearch: (raw: Record<string, unknown>): Search => ({
+    solo: typeof raw.solo === "string" ? raw.solo : undefined,
+  }),
+  component: StudioRoute,
+});
+
+function StudioRoute() {
+  const { solo } = Route.useSearch();
+  return <StudioPage initialSolo={solo} />;
 }

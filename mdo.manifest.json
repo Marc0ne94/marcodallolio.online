@@ -7,7 +7,7 @@
     "domain": "marcodallolio.online",
     "repo": "Marc0ne94/marcodallolio.online",
     "labels": {
-      "role": "grok-space",
+      "role": "banco",
       "ecosystem": "mdo",
       "primary_host": "cloudflare"
     }
@@ -29,7 +29,7 @@
       }
     ],
     "runtime": {
-      "framework": "workers-module",
+      "framework": "tanstack-start-r3f",
       "primaryHost": "cloudflare"
     }
   }
